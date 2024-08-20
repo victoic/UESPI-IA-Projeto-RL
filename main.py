@@ -67,12 +67,6 @@ class Trainer:
         # But we could do so much more!
         model_weights_dict = pygad.torchga.model_weights_as_dict(model=self.model,
                                                     weights_vector=ga_instance.best_solution()[0])
-        
-        if ga_instance.best_solution()[1] > self.best_fitness:
-            self.best_fitness = ga_instance.best_solution()[1]
-            torch.save(model_weights_dict, f"ga_ann_{ga_instance.generations_completed}.pt")
-            self.other = class1(1)
-            self.other.load_state_dict(model_weights_dict)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -108,7 +102,7 @@ if __name__ == "__main__":
         state_dict = torch.load(args.load_0)
         model0.load_state_dict(state_dict)
     
-    class1 = getattr(importlib.import_module(f"ai.{args.team_0_module}", "ai"), args.team_0_class)
+    class1 = getattr(importlib.import_module(f"ai.{args.team_1_module}", "ai"), args.team_1_class)
     model1: torch.nn.Module = class1(1)
     if not args.load_1 is None and os.path.isfile(args.load_1):
         state_dict = torch.load(args.load_1)

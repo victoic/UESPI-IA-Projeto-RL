@@ -91,7 +91,7 @@ class Match:
         self.turn += 1
 
     def __str__(self):
-        s = ""
+        s = f"{self.ais}"
         s += str(self.map)
         for agent in self.map.list_agents:
             s += f"Agent {agent.ID} - ({agent.pos}), "
