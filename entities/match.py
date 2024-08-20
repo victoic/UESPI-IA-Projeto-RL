@@ -78,6 +78,7 @@ class Match:
                 
                 action = self.ais[agent.team].get_action(agent, self.map.get_view(agent.pos))
                 action = self.ais[agent.team].clip_action(action)
+                previous_pos = agent.pos
                 if self.print_log: print(f"Agent {agent.ID} (POSITION {agent.pos}) makes action {Match.ACTIONS[action]} ({action})")
                 if (action <= 7):
                     self.map.agent_move(agent.ID, action)
@@ -85,7 +86,7 @@ class Match:
                     self.map.agent_attack(agent.ID)
                 self.turn_actions[agent.ID] = action
                 agent.last_action = action
-                if not callback is None: callback(agent.team, action, self.map.list_agents)
+                if not callback is None: callback(agent.team, agent.ID, previous_pos, action, self.map.list_agents)
             
             self.log[self.turn] = self.turn_actions
             self.turn_actions

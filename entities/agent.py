@@ -1,6 +1,6 @@
 class Agent:
     CUR_ID = 0
-    RANGE = 10
+    RANGE = 5
     MAX_STRENGTH = 5
     MAX_LIFE = 10
     LEVEL_UP = 3

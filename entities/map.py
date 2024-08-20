@@ -81,9 +81,7 @@ class Map:
         agent: Agent = self.agents[pos]
         for dx in range(-agent.attack_range, agent.attack_range+1):
             for dy in range(-agent.attack_range, agent.attack_range+1):
-                nx = min(max(0, pos[0] + dx), self.height)
-                ny = min(max(0, pos[1] + dy), self.height)
-                new_pos = (nx, ny)
+                new_pos = (pos[0] + dx, pos[1] + dy)
                 if new_pos in self.agents:
                     neighbor = self.agents[new_pos]
                     if agent.team != neighbor.team:

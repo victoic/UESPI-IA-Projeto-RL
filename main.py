@@ -3,14 +3,14 @@ from entities import Match, Map, Agent
 
 import pygad.torchga, torch
 
-import argparse, importlib, os
+import argparse, importlib, os, math
 
 class Trainer:
     def __init__(self, model, other) -> None:
-        self.model = model
+        self.model: torch.nn.Module = model
         self.other = other
         # This could be used for dynamic changes in training
-        self.best_fitness = 0
+        self.best_fitness = -math.inf
         
     def train(self, generations: int, parents: int):
         torch_ga = pygad.torchga.TorchGA(self.model, num_solutions=10)
@@ -35,7 +35,7 @@ class Trainer:
                             )
         # And finally run training
         ga_instance.run()
-        torch.save(self.model, "last.pt")
+        torch.save(self.model.state_dict(), "last.pt")
         m = Match(3, self.model, self.other, presentation=True,
                   sleep_time=0.5)
         m.play(self.turn_callback)
@@ -52,9 +52,9 @@ class Trainer:
         solution_fitness = self.model.get_reward(m.map.list_agents, ga_instance.generations_completed)
         return solution_fitness
 
-    def turn_callback(self, team: int, action: int, list_agents: list[Agent]):
+    def turn_callback(self, team: int, ID: int, previous_pos: tuple, action: int, list_agents: list[Agent]):
         if team == 0:
-            self.model.turn_reward(team, action, list_agents)
+            self.model.turn_reward(team, ID, previous_pos, action, list_agents)
     
     def callback_generation(self, ga_instance: pygad.GA):
         """
@@ -71,6 +71,9 @@ class Trainer:
         # But we could do so much more!
         model_weights_dict = pygad.torchga.model_weights_as_dict(model=self.model,
                                                     weights_vector=ga_instance.best_solution()[0])
+        if ga_instance.best_solution()[1] > self.best_fitness:
+            self.best_fitness = ga_instance.best_solution()[1]
+            torch.save(model_weights_dict, f"model_{ga_instance.generations_completed}.pt")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
