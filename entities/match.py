@@ -67,7 +67,7 @@ class Match:
         for i in range(Match.NUM_ADD_EXP):
             self.map.generate_exp()
     
-    def play_turn(self):
+    def play_turn(self, callback: callable = None):
         speeds = sorted(list(self.map.id_by_speed.keys()), reverse=True)
         for speed in speeds:
             for id in sorted(self.map.id_by_speed[speed]):
@@ -84,30 +84,23 @@ class Match:
                 elif (action == 8):
                     self.map.agent_attack(agent.ID)
                 self.turn_actions[agent.ID] = action
+                agent.last_action = action
+                if not callback is None: callback(agent.team, action, self.map.list_agents)
             
             self.log[self.turn] = self.turn_actions
             self.turn_actions
             self.turn_actions = {}
         self.turn += 1
 
-    def __str__(self):
-        s = f"{self.ais}"
-        s += str(self.map)
-        for agent in self.map.list_agents:
-            s += f"Agent {agent.ID} - ({agent.pos}), "
-        s += f"\nReward (Team 0): {self.ais[0].get_reward(self.map.list_agents, math.inf)}"
-        s += f"\nReward (Team 1): {self.ais[1].get_reward(self.map.list_agents, math.inf)}"
-        return s
-
-    def play(self):
+    def play(self, callback: callable = None):
         while(self.turn < Match.MAX_TURN):
-            if self.presentation: print(self)
             if self.print_log: print(f"START OF TURN {self.turn}")
-            self.play_turn()
+            self.play_turn(callback=callback)
             self.map.clear_dead()
             if self.turn % Match.NEW_EXP_EVERY == 0:
                 self.generate_exp()
-
+            
+            if self.presentation: print(self)
             if self.print_log: print(f"END OF TURN {self.turn}")
             if self.presentation: time.sleep(self.sleep_time)
             if self.presentation: os.system('cls' if os.name == 'nt' else 'clear')
@@ -119,3 +112,13 @@ class Match:
         if self.keep_log:
             with open("log.json", "w") as f:
                 json.dump(self.log, f)
+
+    def __str__(self):
+        s = f"{self.ais}\n"
+        s += str(self.map)
+        s += "\n" * (self.map.MAX_HEIGHT - self.map.height)        
+        for agent in self.map.list_agents:
+            s += f"Agent {agent.ID} Lv. {agent.level} |{agent.life}| - ({agent.last_action}), "
+        s += f"\nReward (Team 0): {self.ais[0].get_reward(self.map.list_agents, math.inf)}"
+        s += f"\nReward (Team 1): {self.ais[1].get_reward(self.map.list_agents, math.inf)}"
+        return s

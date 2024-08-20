@@ -13,6 +13,9 @@ class RandomAI(AI):
         """
         return random.randint(0, 9)
     
+    def turn_reward(self, team: int, action: int, list_agents: list) -> None:
+        pass
+    
     def get_reward(self, agents: dict, *args):
         return 0
 
@@ -55,6 +58,9 @@ class DumbAI(AI):
             else:
                 action = random.randint(0, 7)
         return action
+    
+    def turn_reward(self, team: int, action: int, list_agents: list) -> None:
+        pass
     
     def get_reward(self, agents: dict, *args):
         return 0

@@ -17,6 +17,19 @@ class AI(nn.Module, ABC):
                 and 9 is idle.
         """
         pass
+
+    @abstractmethod
+    def turn_reward(self, team: int, action: int, list_agents: list) -> None:
+        """
+        Method called after every turn in a generation, can be used to
+        calculate fitness modularly.
+            Parameters:
+                team: int, agent's team
+                action: int, action taken by agent
+                list_agents: list[Agent], list of agents in a match
+            Return: None
+        """
+        pass
     
     @abstractmethod
     def get_reward(self, agents: dict, *args):

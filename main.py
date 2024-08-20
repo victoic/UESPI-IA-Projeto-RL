@@ -38,19 +38,23 @@ class Trainer:
         torch.save(self.model, "last.pt")
         m = Match(3, self.model, self.other, presentation=True,
                   sleep_time=0.5)
-        m.play()
+        m.play(self.turn_callback)
 
     def fitness(self, ga_instance: pygad.GA, solution, sol_idx):
         model_weights_dict = pygad.torchga.model_weights_as_dict(model=self.model,
                                                     weights_vector=solution)
         self.model.load_state_dict(model_weights_dict)
         
-        m = Match(3, self.model, self.other, presentation=False, print_log=False)
-        m.play()
+        m = Match(3, self.model, self.other, presentation=False, sleep_time=0.01, print_log=False)
+        m.play(callback=self.turn_callback)
         Agent.CUR_ID = 0
         
         solution_fitness = self.model.get_reward(m.map.list_agents, ga_instance.generations_completed)
         return solution_fitness
+
+    def turn_callback(self, team: int, action: int, list_agents: list[Agent]):
+        if team == 0:
+            self.model.turn_reward(team, action, list_agents)
     
     def callback_generation(self, ga_instance: pygad.GA):
         """

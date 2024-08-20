@@ -3,7 +3,7 @@ class Agent:
     RANGE = 10
     MAX_STRENGTH = 5
     MAX_LIFE = 10
-    LEVEL_UP = 10
+    LEVEL_UP = 3
     DIRECTIONS = [
         (0, 1), (1,1),       # RIGHT, DOWN-RIGHT
         (1, 0), (1, -1),     # DOWN, DOWN-LEFT
@@ -29,6 +29,8 @@ class Agent:
         self.attack_range = 1
         self.strength = 1
         self.speed = 1
+
+        self.last_action = 9
 
     def move(self, new_pos: tuple[int]):
         if self.print_log: print(f"Agent {self.ID} moved from {self.pos} to {new_pos}")

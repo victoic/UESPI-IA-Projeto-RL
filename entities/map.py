@@ -66,9 +66,9 @@ class Map:
                 # if the agent's speed chagend
                 if agent.speed != agent_speed:
                     # we get the index where the agent's ID was stored in self.id_by_speed
-                    index = self.id_by_speed[old_pos].index(self.agents[new_pos].ID)
+                    index = self.id_by_speed[agent_speed].index(self.agents[new_pos].ID)
                     # and delete that index
-                    del self.id_by_speed[old_pos][index]
+                    del self.id_by_speed[agent_speed][index]
                     # check if the speed is already an index, if not create it
                     if not self.agents[new_pos].speed in self.id_by_speed:
                         self.id_by_speed[self.agents[new_pos].speed] = []
