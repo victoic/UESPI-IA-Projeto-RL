@@ -18,9 +18,9 @@ class Tester:
             m = Match(3, model0, model1, presentation=False, sleep_time=0) 
             results.append(m.play())
         print(f'Evaluating - Iteration {i+1}/{self.iterations}')
-        print(f'Victories:\t{results.count(0)}\t({results.count(0)/len(results)*100}%)')
-        print(f'Defeats:\t{results.count(1)}\t{results.count(1)/len(results)*100}%)')
-        print(f'Draws:\t{results.count(-1)}\t{results.count(-1)/len(results)*100}%)')
+        print(f'Victories:\t{results.count(1)}\t({results.count(1)/len(results)*100}%)')
+        print(f'Defeats:\t{results.count(-1)}\t{results.count(-1)/len(results)*100}%)')
+        print(f'Draws:\t{results.count(0)}\t{results.count(0)/len(results)*100}%)')
 
 class Trainer:
     def __init__(self, model, other) -> None:
@@ -155,6 +155,7 @@ if __name__ == "__main__":
 
     class0 = getattr(importlib.import_module(f"ai.{args.team_0_module}", "ai"), args.team_0_class)
     model0: torch.nn.Module = class0(0)
+    print(args)
     if not args.load_0 is None and os.path.isfile(args.load_0):
         state_dict = torch.load(args.load_0)
         if not args.key_0 is None: model0.load_state_dict(state_dict[args.key_0])
@@ -164,7 +165,7 @@ if __name__ == "__main__":
     model1: torch.nn.Module = class1(1)
     if not args.load_1 is None and os.path.isfile(args.load_1):
         state_dict = torch.load(args.load_1)
-        if not args.key_0 is None: model1.load_state_dict(state_dict[args.key_1])
+        if not args.key_1 is None: model1.load_state_dict(state_dict[args.key_1])
         else: model1.load_state_dict(state_dict)
     
     if args.train: 

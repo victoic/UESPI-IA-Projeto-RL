@@ -109,17 +109,24 @@ class Match:
                 break
         
         if self.presentation: print(self)
+        if self.presentation:
+            if self.map.total_life()[0] > self.map.total_life()[1]:
+                print(f'Victory | Team 0')
+            elif self.map.total_life()[0] < self.map.total_life()[1]:
+                print(f'Victory | Team 1')
+            else:
+                print(f'Draw')
 
         if self.keep_log:
             with open("log.json", "w") as f:
                 json.dump(self.log, f)
         
         if self.map.total_life()[0] > self.map.total_life()[1]:
-            result = 0
-        elif self.map.total_life()[0] < self.map.total_life()[1]:
             result = 1
-        else:
+        elif self.map.total_life()[0] < self.map.total_life()[1]:
             result = -1
+        else:
+            result = 0
         return result
 
     def __str__(self):

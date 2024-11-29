@@ -17,7 +17,11 @@ class Neuronio:
         return max(0, x)  # Retorna o valor máximo entre 0 e X dentro da rede
 
     def sigmoid(self, x: float) -> float:
-        return 1 / (1 + math.exp(-x))  # Retorna um valor entre 0 e 1
+        if x < 0:
+            return 1 - 1/(1 + math.exp(x))
+        else:
+            return 1/(1 + math.exp(-x))
+        #return 1 / (1 + math.exp(-x))  # Retorna um valor entre 0 e 1
 
     def setEntrada(self, entrada: list[float]) -> None:
         self._entrada = entrada
