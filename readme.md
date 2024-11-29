@@ -45,8 +45,8 @@ O torneio seguiu uma série de testes entre modelos com melhores de 5 e respeita
 | Modelo 0        | Modelo 1 | Vitórias |
 | -------------   | ------   | ------   |
 | DuelingQNetwork | **RandomAI** | 2x3 |
+| **DDQN**        | RandomAI | 5x0 |
 | Genetic	      | RandomAI | 1x1 |
-| **DDQN**            | RandomAI | 5x0 |
 | **DumbAI**          | RandomAI | 5x0 |
 | DuelingQNetwork | **DumbAI**   | 0x5 |
 | Genetic         | **DumbAI**   | 0x5 |
@@ -62,5 +62,5 @@ A tabela abaixo apresenta os resultados do torneiro em classificação.
 | 1º            | DDQN        | 12     |
 | 2º            | DumbAI      | 9      |
 | 3º            | Genetic     | 4      |
-| 4º            | RandomAI    | 3      |
+| 4º            | RandomAI    | 4      |
 | 5º            | DuelingQNet | 0      |
