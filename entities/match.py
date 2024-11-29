@@ -93,7 +93,7 @@ class Match:
             self.turn_actions = {}
         self.turn += 1
 
-    def play(self, callback: callable = None):
+    def play(self, callback: callable = None) -> int:
         while(self.turn < Match.MAX_TURN):
             if self.print_log: print(f"START OF TURN {self.turn}")
             self.play_turn(callback=callback)
@@ -113,6 +113,14 @@ class Match:
         if self.keep_log:
             with open("log.json", "w") as f:
                 json.dump(self.log, f)
+        
+        if self.map.total_life()[0] > self.map.total_life()[1]:
+            result = 0
+        elif self.map.total_life()[0] < self.map.total_life()[1]:
+            result = 1
+        else:
+            result = -1
+        return result
 
     def __str__(self):
         s = f"{self.ais}\n"

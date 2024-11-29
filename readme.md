@@ -18,3 +18,8 @@ Modelos devem ser treinados para sair o índice de uma dessas ações (0-9).
 **Exemplo de chamada - (treinamento)**: `python main.py -t -t0m="meu_modulo" -t0c="minha_classe" -t1m="random_ai" -t1c="DumbAI" -mw=20 -mh=20`
 
 **Exemplo de chamada - (apresentação)**: `python main.py -p -t0m="meu_modulo" -t0c="minha_classe" -t1m="random_ai" -t1c="DumbAI" -mw=20 -mh=20`
+
+**Exemplo de chamada - (teste)**: `python main.py -e -t0m="meu_modulo" -t0c="minha_classe" -t1m="random_ai" -t1c="DumbAI" -mw=20 -mh=20`
+No teste, a execução (sem apresentação) será repetida 10.000 e as porcentagens de vitórias, derrotas e empates serão exibidas na tela.
+
+Caso um modelo necessite de acesso a uma chave para o carregamento (usando torch.load), use o argumento **-k0** (ou **-k1**) para especificar a string da chave que deseja acessar.
