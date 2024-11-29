@@ -61,6 +61,6 @@ A tabela abaixo apresenta os resultados do torneiro em classificação.
 | ------------- | ------      | ------ |
 | 1º            | DDQN        | 12     |
 | 2º            | DumbAI      | 9      |
-| 3º            | RandomAI    | 4      |
+| 3º            | RandomAI    | 6     |
 | 4º            | Genetic     | 3      |
 | 5º            | DuelingQNet | 0      |
