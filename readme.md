@@ -34,9 +34,9 @@ Detalhamentos sobre o torneio são encontrados abaixo.
 
 | Aluno     | Modelo  | Pontos (Torneio) | Vitórias | Empates | Derrotas |
 | --------- | ------- | ---------------- | -------- | ------- | -------- |
-| Willian   | DDQN    |                  | 64,85%   | 30,53%  | 4,62%    |
-| Cintia    | DuelingDQN |               | 33,73%   | 33,72%  | 32,55%   |
-| Marcos    | Genetic     |                  | 42,34%   | 33,95%  | 23,71%   |
+| Willian   | DDQN    | 12               | 64,85%   | 30,53%  | 4,62%    |
+| Marcos    | Genetic     | 3            | 42,34%   | 33,95%  | 23,71%   |
+| Cintia    | DuelingDQN | 0             | 33,73%   | 33,72%  | 32,55%   |
 
 ### Torneio
 
