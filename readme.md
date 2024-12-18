@@ -40,6 +40,8 @@ Detalhamentos sobre o torneio são encontrados abaixo.
 
 ### Torneio
 
+[![Watch the video](https://img.youtube.com/vi/9OfPPbLyWPk/maxresdefault.jpg)](https://www.youtube.com/watch?v=9OfPPbLyWPk)
+
 O torneio seguiu uma série de testes entre modelos com melhores de 5 e respeitando todas as combinações possíveis de testes. Vitórias representam 3 pontos, empates representam 1 ponto e derrotas 0 pontos. As seguintes partidas foram jogadas:
 
 | Modelo 0        | Modelo 1 | Vitórias |
