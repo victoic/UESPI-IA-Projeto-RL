@@ -1,4 +1,4 @@
-# Projeto de IA - Aprendizagem Não-supervisionada
+# Projeto de IA - Aprendizagem por Reforço
 
 Esse projeto apresenta uma competição entre dois times de 3 agentes. Agentes podem realizar 10 ações diferentes:
 
